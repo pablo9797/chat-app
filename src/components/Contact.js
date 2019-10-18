@@ -1,26 +1,41 @@
 import React from 'react';
 import './Contact.css' ;
 
-function Contact(props){
+class Contact extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            favorite : false,
+        }
+    }
+    render(){
     return(
 
-            <div className='Contact'>
-                <img className='avatar'
-                src={props.image}
-                alt="nothing" />
-                <div className = "status">
-                    <div className = {props.online ? 'status-online' :'status-offline'}></div>
+                <div className='Contact'>
+                    <img className='avatar'
+                    src={this.props.image}
+                    alt="nothing" />
+                    <div className = "status"
+                    onClick = { event=> {
+                        let inverse = !this.state.favorite;
+                        this.setState({favorite:inverse })
+                    }}
+                
+                    >
+                        <div className = {this.state.favorite ? 'status-online' :'status-offline'}></div>
+                        <p>
+                    {this.state.favorite ? 'online' : 'offline'}
+                    </p>
+                    </div>
+                    <div>
+                    <h3>{this.props.name}</h3>
+                   
+                   
+                    </div>    
                 </div>
-                <div>
-                <h3>{props.name}</h3>
-                <p>
-                   {props.online ? 'online' : 'offline'}
-                </p>
-                </div>    
-            </div>
     );
     }
-
+}
 
 
 
